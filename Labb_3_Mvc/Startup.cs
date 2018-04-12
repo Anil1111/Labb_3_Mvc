@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Labb_3_Mvc.Cinema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Labb_3_Mvc
 {
@@ -22,6 +24,9 @@ namespace Labb_3_Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<BerraContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("BerrasBio")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +48,7 @@ namespace Labb_3_Mvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Cinema}/{action=Index}/{id?}");
             });
         }
     }

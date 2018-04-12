@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Labb_3_Mvc.Cinema.Models.Conjunction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Berras Bio</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Title
+            </th>
+            <th>
+                Genre
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td height="100px" width="100px">
+                    <img src="~/images/imgnotavlb.png">
+                </td>
+                <td>
+                    <a asp-action="Movie" asp-route-id="@Html.Encode(item.Movie.Title)">@Html.Encode(item.Movie.Title)</a>
+                </td>
+                <td>
+                    @Html.Encode(item.Movie.Genre)
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
