@@ -1,22 +1,42 @@
 ﻿@model IEnumerable<Labb_3_Mvc.Cinema.Models.Conjunction>
 @{
     ViewData["Title"] = "Movie";
+    var imgurl = "";
 }
 
-<h2>Movie</h2>
+@foreach (var item in Model)
+{
+    @if (item.Movie.Imgurl == null)
+    {
+        imgurl = @"https://i.imgur.com/xcJTuab.png";
+    }
+    else
+    {
+        imgurl = $"{item.Movie.Imgurl}";
+    }
+    <div class="row">
+        <div class="mycontainer">
+            <div class="movieposter">
+                <img src="@imgurl" />
+            </div>
+            <div class="mmovietext">
+                <h2>@item.Movie.Title</h2>
+                <br />
+                <div class="textgenre">
+                    <h4>Genre: @item.Movie.Genre</h4>
+                </div>
+                <div class="textage">
+                    <h5>Recommended Age: @item.Movie.AgeRange</h5>
+                </div>
+                <div class="textage">
+                    <h5>Movie time: @item.MovieTime.Hour:@item.MovieTime.Minute</h5>
+                </div>
+                <div class="bookingbutton">
+                    <a asp-action="BookMovie" asp-route-id="@Html.Encode(item.Movie.Id)" class="btn btn-default">Book Movie</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
-<table class="table">
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td><img src="~/images/imgnotavlb.png" /> </td>
-                <th>Movie: @item.Movie.Title</th>
-                <td>Genre: @item.Movie.Genre</td>
-                <td>Recommended Age: @item.Movie.AgeRange</td>
-                <td><a asp-action="BookMovie" asp-route-id="@Html.Encode(item.Movie.Id)" class="btn btn-default">Book Movie</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
 

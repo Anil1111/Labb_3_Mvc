@@ -16,7 +16,7 @@
     line-height: 1.4;
 }
 
-.table img{
+.table img {
     width: 200px;
 }
 
@@ -28,6 +28,26 @@
 /* QR code generator */
 #qrCode {
     margin: 15px;
+}
+
+.mycontainer {
+    margin-top: 50px;
+}
+
+.movieposter, .mmovietext {
+    float: left;
+}
+
+    .movieposter img {
+        width: 300px;
+    }
+
+.mmovietext {
+    margin-left: 30px;
+}
+
+.bookingbutton {
+    margin-top: 20px;
 }
 
 /* Hide/rearrange for smaller screens */

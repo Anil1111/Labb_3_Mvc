@@ -20,6 +20,10 @@ namespace Labb_3_Mvc.Cinema.Models
         [MaxLength(32)]
         public string Genre { get; set; }
 
+        [Column("ImgUrl")]
+        [MaxLength(32)]
+        public string Imgurl { get; set; }
+
         public int AgeRange { get; set; }
     }
 }

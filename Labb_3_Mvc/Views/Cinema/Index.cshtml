@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var imgurl = @"";
 }
 
 <h2>Berras Bio</h2>
@@ -9,7 +10,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th></th>
+            <th></th> <!-- Image div -->
             <th>
                 Title
             </th>
@@ -21,11 +22,19 @@
     <tbody>
         @foreach (var item in Model)
         {
+            @if (item.Movie.Imgurl == null)
+            {
+                imgurl = @"https://i.imgur.com/xcJTuab.png";
+            }
+            else
+            {
+                imgurl = $"{item.Movie.Imgurl}";
+            }
             <tr>
-                <td height="100px" width="100px">
-                    <img src="~/images/imgnotavlb.png">
+                <td height="100px" width="100px" class="img-rounded">
+                    <a asp-action="Movie" asp-route-id="@Html.Encode(item.Movie.Id)"> <img src="@imgurl"></a>
                 </td>
-                <td>
+                <td width="300px">
                     <a asp-action="Movie" asp-route-id="@Html.Encode(item.Movie.Id)">@Html.Encode(item.Movie.Title)</a>
                 </td>
                 <td>
