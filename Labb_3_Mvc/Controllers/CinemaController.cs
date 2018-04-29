@@ -50,10 +50,10 @@ namespace Labb_3_Mvc.Controllers
 
             return View(view);
         }
-        
-        public async Task<IActionResult> Movie()
+
+        public async Task<IActionResult> Movie(int? id)
         {
-            List<Conjunction> view = new List<Conjunction>();
+            var view = _context.Conjunction.Where(m => m.Movie.Id == id).Include(m => m.Movie);
 
             return View(view);
         }
