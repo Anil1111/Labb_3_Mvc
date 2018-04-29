@@ -17,6 +17,7 @@
             <th>
                 Genre
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -40,8 +41,9 @@
                 <td>
                     @Html.Encode(item.Movie.Genre)
                 </td>
-                <td></td>
-                <td></td>
+                <td>
+                    <b>Room: @Html.Encode(item.Room.Id)</b> <div class="text-info">Status: @Html.Encode(item.Room.Status)</div>
+                </td>
             </tr>
         }
     </tbody>

@@ -11,9 +11,10 @@ using System;
 namespace Labb_3_Mvc.Migrations
 {
     [DbContext(typeof(BerraContext))]
-    partial class BerraContextModelSnapshot : ModelSnapshot
+    [Migration("20180429160218_added-client-email")]
+    partial class addedclientemail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

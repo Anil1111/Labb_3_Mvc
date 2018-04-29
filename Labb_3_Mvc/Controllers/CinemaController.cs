@@ -57,5 +57,20 @@ namespace Labb_3_Mvc.Controllers
 
             return View(view);
         }
+
+        public async Task<IActionResult> BookMovie(int? id)
+        {
+            var view = _context.Conjunction.Where(c => c.Movie.Id == id).Include(c => c.Movie).Include(c => c.Room);
+
+            return View(view);
+        }
+
+        public async Task<IActionResult> Thanks(int? id, string nameInput, string emailInput, string telInput, int seatsInput)
+        {
+            var view = _context.Conjunction.Where(c => c.Movie.Id == id).Include(c => c.Movie).Include(c => c.Room);
+
+            return View(view);
+
+        }
     }
 }

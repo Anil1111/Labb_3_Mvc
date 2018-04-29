@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Labb_3_Mvc.Cinema.Models.Conjunction>
+@{
+    ViewData["Title"] = "BookMovie";
+    var maxnrofseats = 0;
+}
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="mmovietext">
+
+            <h2>@item.Movie.Title </h2>
+            <hr />
+            <div class="textgenre">
+
+                <h4>Genre: @item.Movie.Genre</h4>
+            </div>
+            <div class="textage">
+
+                <h5>Recommended Age: @item.Movie.AgeRange</h5>
+            </div>
+            <div class="textage">
+
+                <h5>Movie time: @item.MovieTime.Hour:@item.MovieTime.Minute</h5>
+            </div>
+
+            <hr />
+            <h4>Please provide the information requested below:</h4>
+            <hr />
+            <div class="clientinfo">
+                <b>Name:</b> <div class="namediv"><input type="text" maxlength="30" id="nameInput" name="nameInput" required /></div>
+                <br />
+                <b>Email:</b> <div class="emaildiv"><input type="email" maxlength="30" id="emailInput" name="emailInput" required /></div>
+                <br />
+                <b>Telephone:</b> <div class="telephonediv"><input type="tel" maxlength="20" id="telInput" name="telInput" required /></div>
+            </div>
+            <div class="seats">
+
+                @if (item.Room.Seats > 12) { maxnrofseats = 12; } else { maxnrofseats = item.Room.Seats; }
+
+                Number of seats available : @item.Room.Seats
+
+                <p>Choose the number of seats (Max @maxnrofseats).</p>
+
+                <input type="number" min="1" max="@maxnrofseats" step="1" value="1" id="seatsInput" name="seatsInput" />
+
+            </div>
+
+            <div class="bookingbutton">
+
+                <hr />
+                <a asp-action="Thanks" asp-route-id="@Html.Encode(item.Movie.Id)" class="btn btn-default">Book</a>
+            </div>
+
+
+        </div>
+    </div>
+}
+
+

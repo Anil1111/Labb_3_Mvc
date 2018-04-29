@@ -11,9 +11,10 @@ using System;
 namespace Labb_3_Mvc.Migrations
 {
     [DbContext(typeof(BerraContext))]
-    partial class BerraContextModelSnapshot : ModelSnapshot
+    [Migration("20180429142649_expanding-access")]
+    partial class expandingaccess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,10 +49,6 @@ namespace Labb_3_Mvc.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email")
-                        .HasColumnName("Email")
-                        .HasMaxLength(32);
 
                     b.Property<string>("FirstName")
                         .HasColumnName("FirstName")

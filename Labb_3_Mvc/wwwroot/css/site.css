@@ -50,6 +50,10 @@
     margin-top: 20px;
 }
 
+.text-info {
+    color: dimgrey;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

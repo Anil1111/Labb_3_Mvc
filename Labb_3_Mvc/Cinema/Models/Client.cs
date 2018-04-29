@@ -15,6 +15,11 @@ namespace Labb_3_Mvc.Cinema.Models
         [Column("FirstName")]
         [MaxLength(32)]
         public string FirstName { get; set; }
+
+        [Column("Email")]
+        [MaxLength(32)]
+        public string Email { get; set; }
+
         public int TelephoneNumber { get; set; }
 
         public virtual Room Room { get; set; }
