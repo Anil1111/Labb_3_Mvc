@@ -12,10 +12,10 @@
         <tr>
             <th></th> <!-- Image div -->
             <th>
-                Title
+                @Html.ActionLink("Title", "Index", new { SortingOrder = ViewBag.NameSortingParm })
             </th>
             <th>
-                Genre
+                @Html.ActionLink("Genre", "Index", new { SortingOrder = ViewBag.GenreSortingParm })
             </th>
             <th></th>
         </tr>
@@ -36,13 +36,13 @@
                     <a asp-action="Movie" asp-route-id="@Html.Encode(item.Movie.Id)"> <img src="@imgurl"></a>
                 </td>
                 <td width="300px">
-                    <a asp-action="Movie" asp-route-id="@Html.Encode(item.Movie.Id)">@Html.Encode(item.Movie.Title)</a>
+                    <b><a asp-action="Movie" asp-route-id="@Html.Encode(item.Movie.Id)">@Html.Encode(item.Movie.Title)</a></b>
                 </td>
                 <td>
-                    @Html.Encode(item.Movie.Genre)
+                    <b class="text-info">@Html.Encode(item.Movie.Genre)</b>
                 </td>
                 <td>
-                    <b>Room: @Html.Encode(item.Room.Id)</b> <div class="text-info">Status: @Html.Encode(item.Room.Status)</div>
+                    <b class="text-info">Room: @Html.Encode(item.Room.Id)</b> <div class="text-info">Status: @Html.Encode(item.Status)</div>
                 </td>
             </tr>
         }

@@ -11,8 +11,8 @@ using System;
 namespace Labb_3_Mvc.Migrations
 {
     [DbContext(typeof(BerraContext))]
-    [Migration("20180429142649_expanding-access")]
-    partial class expandingaccess
+    [Migration("20180502140640_More-changes")]
+    partial class Morechanges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,37 +28,9 @@ namespace Labb_3_Mvc.Migrations
 
                     b.Property<DateTime>("BookingDate");
 
-                    b.Property<int?>("ClientInfoId");
-
-                    b.Property<int?>("MovieInfoId");
-
-                    b.Property<int?>("RoomInfoId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientInfoId");
-
-                    b.HasIndex("MovieInfoId");
-
-                    b.HasIndex("RoomInfoId");
-
-                    b.ToTable("BookingTickets");
-                });
-
-            modelBuilder.Entity("Labb_3_Mvc.Cinema.Models.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("FirstName")
-                        .HasColumnName("FirstName")
-                        .HasMaxLength(32);
-
                     b.Property<int?>("MovieId");
 
                     b.Property<int?>("RoomId");
-
-                    b.Property<int>("TelephoneNumber");
 
                     b.HasKey("Id");
 
@@ -66,7 +38,7 @@ namespace Labb_3_Mvc.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Clients");
+                    b.ToTable("BookingTickets");
                 });
 
             modelBuilder.Entity("Labb_3_Mvc.Cinema.Models.Conjunction", b =>
@@ -74,25 +46,19 @@ namespace Labb_3_Mvc.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ClientId");
-
                     b.Property<int?>("MovieId");
-
-                    b.Property<DateTime>("MovieTime");
 
                     b.Property<int?>("RoomId");
 
-                    b.Property<int?>("TicketId");
+                    b.Property<string>("Status")
+                        .HasColumnName("Status")
+                        .HasMaxLength(32);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("MovieId");
 
                     b.HasIndex("RoomId");
-
-                    b.HasIndex("TicketId");
 
                     b.ToTable("Conjunction");
                 });
@@ -112,15 +78,17 @@ namespace Labb_3_Mvc.Migrations
                         .HasColumnName("ImgUrl")
                         .HasMaxLength(32);
 
-                    b.Property<int?>("RoomId");
+                    b.Property<string>("Length")
+                        .HasColumnName("Length")
+                        .HasMaxLength(32);
+
+                    b.Property<int>("SeatsNr");
 
                     b.Property<string>("Title")
                         .HasColumnName("Title")
                         .HasMaxLength(32);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
 
                     b.ToTable("Movies");
                 });
@@ -130,33 +98,12 @@ namespace Labb_3_Mvc.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Seats");
-
-                    b.Property<string>("Status")
-                        .HasColumnName("Status")
-                        .HasMaxLength(32);
-
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Labb_3_Mvc.Cinema.Models.BookingTicket", b =>
-                {
-                    b.HasOne("Labb_3_Mvc.Cinema.Models.Client", "ClientInfo")
-                        .WithMany("BookingTicket")
-                        .HasForeignKey("ClientInfoId");
-
-                    b.HasOne("Labb_3_Mvc.Cinema.Models.Movie", "MovieInfo")
-                        .WithMany()
-                        .HasForeignKey("MovieInfoId");
-
-                    b.HasOne("Labb_3_Mvc.Cinema.Models.Room", "RoomInfo")
-                        .WithMany()
-                        .HasForeignKey("RoomInfoId");
-                });
-
-            modelBuilder.Entity("Labb_3_Mvc.Cinema.Models.Client", b =>
                 {
                     b.HasOne("Labb_3_Mvc.Cinema.Models.Movie", "Movie")
                         .WithMany()
@@ -169,27 +116,12 @@ namespace Labb_3_Mvc.Migrations
 
             modelBuilder.Entity("Labb_3_Mvc.Cinema.Models.Conjunction", b =>
                 {
-                    b.HasOne("Labb_3_Mvc.Cinema.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId");
-
                     b.HasOne("Labb_3_Mvc.Cinema.Models.Movie", "Movie")
                         .WithMany()
                         .HasForeignKey("MovieId");
 
                     b.HasOne("Labb_3_Mvc.Cinema.Models.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId");
-
-                    b.HasOne("Labb_3_Mvc.Cinema.Models.BookingTicket", "Ticket")
-                        .WithMany()
-                        .HasForeignKey("TicketId");
-                });
-
-            modelBuilder.Entity("Labb_3_Mvc.Cinema.Models.Movie", b =>
-                {
-                    b.HasOne("Labb_3_Mvc.Cinema.Models.Room")
-                        .WithMany("Movies")
                         .HasForeignKey("RoomId");
                 });
 #pragma warning restore 612, 618

@@ -21,37 +21,50 @@
             </div>
             <div class="textage">
 
-                <h5>Movie time: @item.MovieTime.Hour:@item.MovieTime.Minute</h5>
+                <h5>Movie Length: @item.Movie.Length</h5>
             </div>
 
             <hr />
-            <h4>Please provide the information requested below:</h4>
-            <hr />
-            <div class="clientinfo">
+
+            <!--<div class="clientinfo">
                 <b>Name:</b> <div class="namediv"><input type="text" maxlength="30" id="nameInput" name="nameInput" required /></div>
                 <br />
                 <b>Email:</b> <div class="emaildiv"><input type="email" maxlength="30" id="emailInput" name="emailInput" required /></div>
                 <br />
                 <b>Telephone:</b> <div class="telephonediv"><input type="tel" maxlength="20" id="telInput" name="telInput" required /></div>
-            </div>
-            <div class="seats">
+            </div>-->
 
-                @if (item.Room.Seats > 12) { maxnrofseats = 12; } else { maxnrofseats = item.Room.Seats; }
-
-                Number of seats available : @item.Room.Seats
-
-                <p>Choose the number of seats (Max @maxnrofseats).</p>
-
-                <input type="number" min="1" max="@maxnrofseats" step="1" value="1" id="seatsInput" name="seatsInput" />
-
-            </div>
-
-            <div class="bookingbutton">
-
+            @if (item.Movie.SeatsNr > 0)
+            {
+                <h4>Please provide the information requested below:</h4>
                 <hr />
-                <a asp-action="Thanks" asp-route-id="@Html.Encode(item.Movie.Id)" class="btn btn-default">Book</a>
-            </div>
 
+                @if (item.Movie.SeatsNr > 12) { maxnrofseats = 12; } else { maxnrofseats = item.Movie.SeatsNr; }
+                <div>
+                    Number of seats available : @item.Movie.SeatsNr
+                </div>
+            }
+
+            @if (maxnrofseats > 0)
+            {
+                <div class="seats">
+                    <p>Choose the number of seats (Max @maxnrofseats).</p>
+                    <input type="number" min="1" max="@maxnrofseats" step="1" value="1" id="seatsInput" name="seatsInput" />
+                </div>
+
+                <div class="bookingbutton">
+                    <hr />
+                    <a asp-action="Thanks" asp-route-id="@Html.Encode(item.Movie.Id)" class="btn btn-default">Book</a>
+                </div>
+            }
+            else
+            {
+                <div class="seats">
+                    <h2 style="color:red">There are no more seats available.</h2>
+                </div>
+                <hr />
+                <a asp-action="Index" class="btn btn-default">Back to Home</a>
+            }
 
         </div>
     </div>

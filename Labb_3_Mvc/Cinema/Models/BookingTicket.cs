@@ -11,9 +11,9 @@ namespace Labb_3_Mvc.Cinema.Models
         [Key]
         public int Id { get; set; }
 
-        public Client ClientInfo { get; set; }
+        //public Client ClientInfo { get; set; }
         public DateTime BookingDate { get; set; }
-        public Movie MovieInfo { get; set; }
-        public Room RoomInfo { get; set; }
+        public Movie Movie { get; set; }
+        public Room Room { get; set; }
     }
 }

@@ -29,7 +29,7 @@
                     <h5>Recommended Age: @item.Movie.AgeRange</h5>
                 </div>
                 <div class="textage">
-                    <h5>Movie time: @item.MovieTime.Hour:@item.MovieTime.Minute</h5>
+                    <h5>Movie Length: @item.Movie.Length</h5>
                 </div>
                 <div class="bookingbutton">
                     <a asp-action="BookMovie" asp-route-id="@Html.Encode(item.Movie.Id)" class="btn btn-default">Book Movie</a>

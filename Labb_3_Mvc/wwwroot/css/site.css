@@ -20,6 +20,10 @@
     width: 200px;
 }
 
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;

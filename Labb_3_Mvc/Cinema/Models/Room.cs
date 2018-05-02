@@ -10,14 +10,7 @@ namespace Labb_3_Mvc.Cinema.Models
     public class Room
     {
         [Key]
-        public int Id { get; set; }
-
-        [Column("Status")]
-        [MaxLength(32)]
-        public string Status { get; set; }
-
-        public int Seats { get; set; }
-
-        public virtual IEnumerable<Movie> Movies { get; set; }
+        public int Id { get; set; }        
+        
     }
 }

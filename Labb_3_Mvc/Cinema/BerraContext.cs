@@ -12,7 +12,7 @@ namespace Labb_3_Mvc.Cinema
         public BerraContext(DbContextOptions options) : base(options) { }
 
         public DbSet<BookingTicket> BookingTickets { get; set; }
-        public DbSet<Client> Clients { get; set; }
+        //public DbSet<Client> Clients { get; set; }
         public DbSet<Conjunction> Conjunction { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Room> Rooms { get; set; }

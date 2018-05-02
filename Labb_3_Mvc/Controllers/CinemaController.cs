@@ -22,8 +22,8 @@ namespace Labb_3_Mvc.Controllers
         // GET: Shows
         public async Task<IActionResult> Index(string SortingOrder)
         {
-            ViewBag.TimeOrder = SortingOrder == "time_desc" ? "time_asc" : "time_desc";
-            ViewBag.SeatsOrder = SortingOrder == "seats_desc" ? "seats_asc" : "seats_desc";
+            ViewBag.NameSortingParm = String.IsNullOrEmpty(SortingOrder) ? "title_desc" : "";
+            ViewBag.GenreSortingParm = SortingOrder == "Genre" ? "genre_asc" : "Genre";
 
             List<Conjunction> view = new List<Conjunction>();
 
@@ -31,17 +31,14 @@ namespace Labb_3_Mvc.Controllers
 
             switch (SortingOrder)
             {
-                case "time_desc":
-                    view = context.OrderByDescending(s => s.MovieTime).ToList();
+                case "title_desc":
+                    view = context.OrderByDescending(s => s.Movie.Title).ToList();
                     break;
-                case "time_asc":
-                    view = context.OrderBy(s => s.MovieTime).ToList();
+                case "Genre":
+                    view = context.OrderByDescending(s => s.Movie.Genre).ToList();
                     break;
-                case "seats_desc":
-                    view = context.OrderByDescending(s => s.Room.Seats).ToList();
-                    break;
-                case "seats_asc":
-                    view = context.OrderBy(s => s.Room.Seats).ToList();
+                case "genre_asc":
+                    view = context.OrderBy(s => s.Movie.Genre).ToList();
                     break;
                 default:
                     view = context.OrderBy(s => s.Movie.Title).ToList();

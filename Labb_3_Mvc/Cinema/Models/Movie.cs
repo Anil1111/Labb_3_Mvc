@@ -12,9 +12,7 @@ namespace Labb_3_Mvc.Cinema.Models
         [Key]
         public int Id { get; set; }
 
-        [Column("Title")]
-        [MaxLength(32)]
-        public string Title { get; set; }
+        public int AgeRange { get; set; }
 
         [Column("Genre")]
         [MaxLength(32)]
@@ -24,6 +22,16 @@ namespace Labb_3_Mvc.Cinema.Models
         [MaxLength(32)]
         public string Imgurl { get; set; }
 
-        public int AgeRange { get; set; }
+        [Column("Length")]
+        [MaxLength(32)]
+        public string Length { get; set; }
+
+        public int SeatsNr { get; set; }
+
+        [Column("Title")]
+        [MaxLength(32)]
+        public string Title { get; set; }
+
+
     }
 }
