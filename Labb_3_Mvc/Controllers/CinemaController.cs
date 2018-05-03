@@ -15,7 +15,7 @@ namespace Labb_3_Mvc.Controllers
         BookingTicket ticket { get; set; }
         Movie tempmovie { get; set; }
         Room tempRoom { get; set; }
-        DateTime now { get; set; }
+        DateTime date { get; set; }
         string temptstatus { get; set; }
         private readonly BerraContext _context;
 
@@ -70,7 +70,9 @@ namespace Labb_3_Mvc.Controllers
         [HttpPost]
         public async Task<IActionResult> Thanks(int? id, int seatsInput)
         {
-            var movie = _context.Conjunction.Where(c => c.Id == id).Include(m => m.Movie);
+            var movie = _context.Conjunction
+                .Where(c => c.Id == id)
+                .Include(m => m.Movie);
 
             foreach (var i in movie)
             {
@@ -93,15 +95,17 @@ namespace Labb_3_Mvc.Controllers
             {
                 Movie = tempmovie,
                 Room = tempRoom,
-                BookingDate = new DateTime()
+                BookingDate = DateTime.Now
             };
 
             _context.Add(ticket);
             await _context.SaveChangesAsync();
 
-            var view = _context.Conjunction.Where(c => c.Movie.Id == id).Include(c => c.Movie).Include(c => c.Room);
+            var view = _context.BookingTickets
+                .Include(t => t.Movie)
+                .Include(t => t.Room).OrderByDescending(t => t.Id).ToList();
 
-            return View(ticket);
+            return View(view);
 
         }
     }
