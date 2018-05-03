@@ -12,6 +12,11 @@ namespace Labb_3_Mvc.Controllers
 {
     public class CinemaController : Controller
     {
+        BookingTicket ticket { get; set; }
+        Movie tempmovie { get; set; }
+        Room tempRoom { get; set; }
+        DateTime now { get; set; }
+        string temptstatus { get; set; }
         private readonly BerraContext _context;
 
         public CinemaController(BerraContext context)
@@ -55,18 +60,48 @@ namespace Labb_3_Mvc.Controllers
             return View(view);
         }
 
+        [HttpGet]
         public async Task<IActionResult> BookMovie(int? id)
         {
             var view = _context.Conjunction.Where(c => c.Movie.Id == id).Include(c => c.Movie).Include(c => c.Room);
 
             return View(view);
         }
-
-        public async Task<IActionResult> Thanks(int? id, string nameInput, string emailInput, string telInput, int seatsInput)
+        [HttpPost]
+        public async Task<IActionResult> Thanks(int? id, int seatsInput)
         {
+            var movie = _context.Conjunction.Where(c => c.Id == id).Include(m => m.Movie);
+
+            foreach (var i in movie)
+            {
+                i.Movie.SeatsNr -= seatsInput;
+            }
+
+            var context = _context.Conjunction
+                .Where(c => c.Id == id)
+                .Include(m => m.Movie)
+                .Include(r => r.Room);
+
+            foreach (var i in context)
+            {
+                tempmovie = i.Movie;
+                tempRoom = i.Room;
+                temptstatus = i.Status;
+            }
+
+            ticket = new BookingTicket()
+            {
+                Movie = tempmovie,
+                Room = tempRoom,
+                BookingDate = new DateTime()
+            };
+
+            _context.Add(ticket);
+            await _context.SaveChangesAsync();
+
             var view = _context.Conjunction.Where(c => c.Movie.Id == id).Include(c => c.Movie).Include(c => c.Room);
 
-            return View(view);
+            return View(ticket);
 
         }
     }

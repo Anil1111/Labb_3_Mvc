@@ -10,7 +10,11 @@ namespace Labb_3_Mvc.Cinema.Models
     public class Room
     {
         [Key]
-        public int Id { get; set; }        
-        
+        public int Id { get; set; }
+
+        [Column("RoomName")]
+        [MaxLength(32)]
+        public string RoomName { get; set; }
+
     }
 }
